@@ -43,15 +43,17 @@ train_dataloader = dict(
     batch_size=8,
     num_workers=4,
     persistent_workers=True,
-    #sampler=dict(type='InfiniteSampler', shuffle=True),
-    sampler=dict(type='DefaultSampler', shuffle=True),
+    sampler=dict(type='InfiniteSampler', shuffle=True),
+    #sampler=dict(type='DefaultSampler', shuffle=True),
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
         data_prefix=dict(
             img_path='train/img', 
             seg_map_path='train/label'),
-        pipeline=train_pipeline))
+        pipeline=train_pipeline),
+        #drop_last = True
+        )
 val_dataloader = dict(
     batch_size=8,
     num_workers=4,
