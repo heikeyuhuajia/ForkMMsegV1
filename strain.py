@@ -16,9 +16,9 @@ os.system("CUDA_VISIBLE_DEVICES=2")
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a segmentor')
     parser.add_argument('--config', help='train config file path', 
-                        default='/home/wyuan/code/ForkMMsegV1/configs/swin/sherlock_swintiny_pre_upernet.py')
+                        default='/home/wyuan/code/ForkMMsegV1/configs/unet/sherlock_unet-s5-d16_fcn.py')
     parser.add_argument('--work-dir', help='the dir to save logs and models',
-                        default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/swintiny_pre_upernet')
+                        default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/unet-s5-d16_fcn')
     parser.add_argument(
         '--resume',
         action='store_true',

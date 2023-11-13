@@ -262,10 +262,10 @@ class IoUMetric(BaseMetric):
                     f_score(x[0], x[1], beta) for x in zip(precision, recall)
                 ])
                 ret_metrics['IoU'] = iou
-                ret_metrics['Acc'] = acc
                 ret_metrics['Fscore'] = f_value
                 ret_metrics['Precision'] = precision
                 ret_metrics['Recall'] = recall
+                ret_metrics['Acc'] = acc
             elif metric == 'mDice':
                 dice = 2 * total_area_intersect / (
                     total_area_pred_label + total_area_label)
