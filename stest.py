@@ -11,12 +11,12 @@ from mmengine.runner import Runner
 def parse_args():
     parser = argparse.ArgumentParser(
         description='MMSeg test (and eval) a model')
-    parser.add_argument('--config', help='train config file path', default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/swintiny_pre_upernet/sherlock_swintiny_pre_upernet.py')
-    parser.add_argument('--checkpoint', help='checkpoint file', default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/swintiny_pre_upernet/iter_200000.pth')
+    parser.add_argument('--config', help='train config file path', default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/unet-s5-d16_fcn/sherlock_unet-s5-d16_fcn.py')
+    parser.add_argument('--checkpoint', help='checkpoint file', default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/unet-s5-d16_fcn/best_100000.pth')
     parser.add_argument(
         '--work-dir',
         help=('if specified, the evaluation metric results will be dumped'
-              'into the directory as json'), default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/swintiny_pre_upernet/test/test200000')
+              'into the directory as json'), default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/unet-s5-d16_fcn/test/test100k')
     parser.add_argument(
         '--out',
         type=str,
@@ -27,7 +27,7 @@ def parse_args():
         '--show-dir',
         help='directory where painted images will be saved. '
         'If specified, it will be automatically saved '
-        'to the work_dir/timestamp/show_dir', default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/swintiny_pre_upernet/show/show200000')
+        'to the work_dir/timestamp/show_dir', default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/unet-s5-d16_fcn/show/show100k')
     parser.add_argument(
         '--wait-time', type=float, default=2, help='the interval of show (s)')
     parser.add_argument(
