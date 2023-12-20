@@ -2,7 +2,7 @@ checkpoint = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/twins/
 
 # model settings
 backbone_norm_cfg = dict(type='LN')
-norm_cfg = dict(type='SyncBN', requires_grad=True)
+norm_cfg = dict(type='BN', requires_grad=True)
 data_preprocessor = dict(
     type='SegDataPreProcessor',
     mean=[123.675, 116.28, 103.53],
@@ -43,7 +43,7 @@ model = dict(
         feature_strides=[4, 8, 16, 32],
         channels=128,
         dropout_ratio=0.1,
-        num_classes=150,
+        num_classes=2,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(

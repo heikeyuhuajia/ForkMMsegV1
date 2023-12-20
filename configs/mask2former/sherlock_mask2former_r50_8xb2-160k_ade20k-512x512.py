@@ -6,7 +6,7 @@ _base_ = [
 
 custom_imports = dict(imports='mmdet.models', allow_failed_imports=False)
 
-crop_size = (512, 512)
+crop_size = (256, 256)
 data_preprocessor = dict(
     type='SegDataPreProcessor',
     mean=[123.675, 116.28, 103.53],
@@ -16,7 +16,7 @@ data_preprocessor = dict(
     seg_pad_val=255,
     size=crop_size,
     test_cfg=dict(size_divisor=32))
-num_classes = 150
+num_classes = 2
 model = dict(
     type='EncoderDecoder',
     data_preprocessor=data_preprocessor,
