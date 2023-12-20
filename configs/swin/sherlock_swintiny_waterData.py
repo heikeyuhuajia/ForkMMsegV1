@@ -1,9 +1,8 @@
 _base_ = [
     '../_base_/models/sherlock_upernet_swin.py', 
-    #'../_base_/datasets/sherlock_beijingbuilding_256.py',
-    '../_base_/datasets/sherlock_whu_256.py',
-    '../_base_/sherlock_default_runtime.py', 
-    '../_base_/schedules/sherlock_schedule_100k.py'
+    '../_base_/datasets/sherlock_water_256x256.py',
+    '../_base_/default_runtime.py', 
+    '../_base_/schedules/sherlock_schedule_300epo.py'
 ]
 crop_size = (256,256)
 data_preprocessor = dict(size=crop_size)
@@ -39,17 +38,17 @@ optim_wrapper = dict(
 
 param_scheduler = [
     dict(
-        type='LinearLR', start_factor=1e-6, by_epoch=False, begin=0, end=1500),
+        type='LinearLR', start_factor=1e-6, by_epoch=True, begin=0, end=20),
     dict(
         type='PolyLR',
         eta_min=0.0,
         power=1.0,
-        begin=1500,
-        end=100000,
-        by_epoch=False,
+        begin=20,
+        end=300,
+        by_epoch=True,
     )
 ]
 
 # By default, models are trained on 8 GPUs with 2 images per GPU
-train_dataloader = dict(batch_size=8)
-val_dataloader = dict(batch_size=8)
+train_dataloader = dict()
+val_dataloader = dict()

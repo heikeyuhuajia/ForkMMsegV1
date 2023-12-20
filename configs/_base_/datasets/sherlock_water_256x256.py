@@ -1,13 +1,13 @@
 # dataset settings
 dataset_type = 'OurWater'
 data_root = '/home/wyuan/data/water_project/waterDataset_1219_end'   # 公司数据集存放的路径;
-crop_size = (360,640)
+crop_size = (256,256)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', reduce_zero_label=False),
     dict(
         type='RandomResize',
-        scale=(360,640),
+        scale=(256,256),
         ratio_range=(0.5, 2.0),
         keep_ratio=True),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
@@ -17,7 +17,7 @@ train_pipeline = [
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
-    dict(type='Resize', scale=(360,640), keep_ratio=True),
+    dict(type='Resize', scale=(256,256), keep_ratio=True),
     # add loading annotation after ``Resize`` because ground truth
     # does not need to do resize data transform
     dict(type='LoadAnnotations', reduce_zero_label=False),
@@ -40,7 +40,7 @@ tta_pipeline = [
         ])
 ]
 train_dataloader = dict(
-    batch_size=8,
+    batch_size=32,
     num_workers=4,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
@@ -55,7 +55,7 @@ train_dataloader = dict(
         #drop_last = True
         )
 val_dataloader = dict(
-    batch_size=8,
+    batch_size=32,
     num_workers=4,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=False),

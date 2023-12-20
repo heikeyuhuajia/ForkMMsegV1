@@ -1,13 +1,13 @@
 # dataset settings
-dataset_type = 'OurWater'
-data_root = '/home/wyuan/data/water_project/waterDataset_1219_end'   # 公司数据集存放的路径;
-crop_size = (360,640)
+dataset_type = 'WHU'
+data_root = '/home/wyuan/data/BEDataset/WHU_sa1_256_tr_va_test'
+crop_size = (256,256)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', reduce_zero_label=False),
     dict(
         type='RandomResize',
-        scale=(360,640),
+        scale=(256,256),
         ratio_range=(0.5, 2.0),
         keep_ratio=True),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
@@ -17,7 +17,7 @@ train_pipeline = [
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
-    dict(type='Resize', scale=(360,640), keep_ratio=True),
+    dict(type='Resize', scale=(256,256), keep_ratio=True),
     # add loading annotation after ``Resize`` because ground truth
     # does not need to do resize data transform
     dict(type='LoadAnnotations', reduce_zero_label=False),
@@ -43,14 +43,14 @@ train_dataloader = dict(
     batch_size=8,
     num_workers=4,
     persistent_workers=True,
-    sampler=dict(type='DefaultSampler', shuffle=True),
+    sampler=dict(type='InfiniteSampler', shuffle=True),
     #sampler=dict(type='DefaultSampler', shuffle=True),
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
         data_prefix=dict(
             img_path='train/img', 
-            seg_map_path='train/label_gray01'),
+            seg_map_path='train/label'),
         pipeline=train_pipeline),
         #drop_last = True
         )
@@ -64,21 +64,20 @@ val_dataloader = dict(
         data_root=data_root,
         data_prefix=dict(
             img_path='val/img', 
-            seg_map_path='val/label_gray01'),
+            seg_map_path='val/label'),
         pipeline=test_pipeline))
 test_dataloader = dict(
-    batch_size=1,
-    num_workers=1,
+    batch_size=8,
+    num_workers=4,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
         data_prefix=dict(
-            img_path='test/img_png', 
-            seg_map_path='test/label_gray01'),
+            img_path='test/img', 
+            seg_map_path='test/label'),
         pipeline=test_pipeline))
 
 val_evaluator = dict(type='IoUMetric', iou_metrics=['mIoU'])
-test_evaluator = dict(type='IoUMetric', iou_metrics=['mIoU'])
-#test_cfg=dict(mode='whole')
+test_evaluator = val_evaluator

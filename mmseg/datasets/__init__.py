@@ -41,6 +41,7 @@ from .transforms import (CLAHE, AdjustGamma, Albu, BioMedical3DPad,
 from .voc import PascalVOCDataset
 
 from .sherlock_BeijingBuilding import BeijingBuilding
+from .sherlock_WHU import WHU
 from .sherlock_Water import OurWater
 
 # yapf: enable
@@ -65,5 +66,5 @@ __all__ = [
     'ConcatCDInput', 'BaseCDDataset', 'DSDLSegDataset', 'BDD100KDataset',
     'NYUDataset',
 
-    'BeijingBuilding', 'OurWater',
+    'BeijingBuilding', 'WHU', 'OurWater',
 ]

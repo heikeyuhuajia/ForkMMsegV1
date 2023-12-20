@@ -11,14 +11,14 @@ from mmengine.runner import Runner
 from mmseg.registry import RUNNERS
 
 # -----
-os.system("CUDA_VISIBLE_DEVICES=2")
+os.system("CUDA_VISIBLE_DEVICES=3")
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a segmentor')
     parser.add_argument('--config', help='train config file path', 
-                        default='configs/twins/sherlock_twins_svt-b_fpn_fpnhead_8xb4-80k_ade20k-512x512.py')
+                        default='configs/swin/sherlock_swintiny_waterData.py')
     parser.add_argument('--work-dir', help='the dir to save logs and models',
-                        default='workDirs/DiffExp/BeijingBuilding256/twins_svt-b_fpn_fpnhead/')
+                        default='workDirs/WaterProject/Swin_waterData1219End_300epo_bs32/')
     parser.add_argument(
         '--resume',
         action='store_true',
