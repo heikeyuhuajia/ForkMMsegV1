@@ -10,15 +10,14 @@ from mmengine.runner import Runner
 
 from mmseg.registry import RUNNERS
 
-# -----
-os.system("CUDA_VISIBLE_DEVICES=3")
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a segmentor')
     parser.add_argument('--config', help='train config file path', 
-                        default='configs/swin/sherlock_swintiny_waterData.py')
+                        default='/home/wyuan/code/ForkMMsegV1/configs/swin/sherlock_swintiny_waterData.py')
     parser.add_argument('--work-dir', help='the dir to save logs and models',
-                        default='workDirs/WaterProject/Swin_waterData1219End_300epo_bs32/')
+                        default='/home/wyuan/code/ForkMMsegV1/workDirs/WaterProject/swin_waterComplex')
     parser.add_argument(
         '--resume',
         action='store_true',
@@ -29,6 +28,9 @@ def parse_args():
         action='store_true',
         default=False,
         help='enable automatic-mixed-precision training')
+    parser.add_argument(
+        '--load_from',
+        default='/home/wyuan/code/ForkMMsegV1/workDirs/WaterProject/Swin_WaterExceptPuddle_300ep_bs32/best_130.pth')
     parser.add_argument(
         '--cfg-options',
         nargs='+',

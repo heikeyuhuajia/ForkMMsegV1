@@ -1,6 +1,8 @@
 # dataset settings
 dataset_type = 'OurWater'
-data_root = '/home/wyuan/data/water_project/waterDataset_1219_end'   # 公司数据集存放的路径;
+#data_root = '/home/wyuan/data/water_project/waterDataset_1219_end'   # 公司数据集存放的路径;
+#data_root = '/home/wyuan/data/water_project/companyTest_SimpleDay'
+data_root = '/home/wyuan/data/water_project/companyTest_SimpleDay_select_31'
 crop_size = (360,640)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
@@ -55,8 +57,8 @@ train_dataloader = dict(
         #drop_last = True
         )
 val_dataloader = dict(
-    batch_size=8,
-    num_workers=4,
+    batch_size=1,
+    num_workers=1,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=False),
     dataset=dict(
@@ -75,8 +77,10 @@ test_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         data_prefix=dict(
-            img_path='test/img_png', 
-            seg_map_path='test/label_gray01'),
+            # img_path='test/img_png', 
+            # seg_map_path='test/label_gray01'),
+            img_path='img', 
+            seg_map_path='label_gray01'),
         pipeline=test_pipeline))
 
 val_evaluator = dict(type='IoUMetric', iou_metrics=['mIoU'])

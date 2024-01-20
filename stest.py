@@ -11,16 +11,17 @@ from mmengine.runner import Runner
 def parse_args():
     parser = argparse.ArgumentParser(
         description='MMSeg test (and eval) a model')
-    parser.add_argument('--config', help='train config file path', default='configs/unet/sherlock_uranet.py')
-    parser.add_argument('--checkpoint', help='checkpoint file', default='checkpoints/best.pth')
+    parser.add_argument('--config', help='train config file path', default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/segneXt_mscan_tiny/sherlock_segnext_mscan-t.py')
+    parser.add_argument('--checkpoint', help='checkpoint file', default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/segneXt_mscan_tiny/best_100000.pth')
     parser.add_argument(
         '--work-dir',
         help=('if specified, the evaluation metric results will be dumped'
-              'into the directory as json'), default='/home/wyuan/code/ForkMMsegV1/workDirs/WaterProject/URANet/test/')
+              'into the directory as json'), default=None)
     parser.add_argument(
         '--out',
         type=str,
-        help='The directory to save output prediction for offline evaluation')
+        help='The directory to save output prediction for offline evaluation',
+        default='/home/wyuan/code/ForkMMsegV1/workDirs/DiffExp/BeijingBuilding256/segneXt_mscan_tiny/test/')
     parser.add_argument(
         '--show', action='store_true', help='show prediction results')
     parser.add_argument(

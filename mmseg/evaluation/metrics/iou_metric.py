@@ -265,6 +265,7 @@ class IoUMetric(BaseMetric):
                 ret_metrics['Fscore'] = f_value
                 ret_metrics['Precision'] = precision
                 ret_metrics['Recall'] = recall
+                ret_metrics['1-Recall'] = 1 - recall
                 ret_metrics['Acc'] = acc
             elif metric == 'mDice':
                 dice = 2 * total_area_intersect / (

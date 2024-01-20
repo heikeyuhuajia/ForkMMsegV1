@@ -1,15 +1,16 @@
 # dataset settings
 dataset_type = 'OurWater'
 #data_root = '/home/wyuan/data/water_project/waterDataset_1219_end '   # 公司数据集存放的路径;
-#data_root = '/home/wyuan/data/water_project/companyTest_SimpleDay'
-data_root = '/home/wyuan/data/water_project/companyTest_SimpleDay_select_31'
-crop_size = (256,256)
+#data_root = '/home/wyuan/data/water_project/companyTest_SimpleDay_select_31'
+#data_root = '/home/wyuan/data/water_project/waterDataset_exceptPuddle'
+data_root = '/home/wyuan/data/water_project/DaytimeComplex_new'
+crop_size = (512,512)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', reduce_zero_label=False),
     dict(
         type='RandomResize',
-        scale=(256,256),
+        scale=(512,512),
         ratio_range=(0.5, 2.0),
         keep_ratio=True),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
@@ -19,7 +20,7 @@ train_pipeline = [
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
-    dict(type='Resize', scale=(256,256), keep_ratio=True),
+    dict(type='Resize', scale=(512,512), keep_ratio=True),
     # add loading annotation after ``Resize`` because ground truth
     # does not need to do resize data transform
     dict(type='LoadAnnotations', reduce_zero_label=False),
@@ -77,10 +78,10 @@ test_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         data_prefix=dict(
-            # img_path='test/img', 
-            # seg_map_path='test/label_gray01'),
-            img_path='img', 
-            seg_map_path='label_gray01'),
+            img_path='test/img', 
+            seg_map_path='test/label_gray01'),
+            # img_path='img/test', 
+            # seg_map_path='label/test_gray01'),
         pipeline=test_pipeline))
 
 val_evaluator = dict(type='IoUMetric', iou_metrics=['mIoU'])
